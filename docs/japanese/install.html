@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>インストール・マニュアル</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS 新着情報 モジュール</h3>
+<H3>インストール・マニュアル</H3>
+
+<H4>１．解凍</H4>
+解凍すると、<FONT color="#0000ff"><B>whatsnew</B></FONT> というデイレクトリが出来る<br />
+XOOPS のmodules デイレクトリの下にコピーする<br />
+
+<H4>２．モジュールのインストール</H4>
+管理者画面の「モジュール管理」から、インストールする<br />
+
+<H4>３．新着情報ブロックの設定</H4>
+３．１ モジュールの初期設定<br />
+管理者画面の左欄にある<img src="../../images/whatsnew_slogo.png" width=70>「whatsnew」アイコンをクリックする<br />
+「一般設定１」画面になる。<br />
+<br />
+３．２ 警告<br />
+一番最初はいくつか警告が出る。<br />
+<br />
+(1) <FONT color="#ff0000">設定テーブルが初期化されていない<br />
+</FONT>「保存」をクリックして、初期化する。<br />
+<br />
+(2) <FONT color="#ff0000">cacheデイレクトリの書込み許可がない<br />
+</FONT>
+whatsnew/<FONT color="#0000ff"><B>cache</B></FONT> デイレクトリに書込み許可を与える<br />
+<br />
+(3) <FONT color="#ff0000">プラグインがモジュール側と WhatsNew の両方に存在します</FONT><br />
+プラグインは、モジュール側を優先して使用します。<br />
+どちらか古いほうを削除してください。<br />
+<br />
+３．３ モジュールの選択<br />
+表示するモジュールを選択する。<br />
+<br />３．４ ブロックとアクセス権限の設定<br />
+管理者画面の「ブロック管理」にて、「表示」に設定する<br />
+管理者画面の「グループ管理」にて、「モジュールアクセス権限」と「ブロックアクセス権限」を設定する<br />
+<br />
+３．４ 新着情報ブロックの確認<br />
+「ホームページ」画面にて、表示されれば、OK<br />
+
+<H4>４．RSS/ATOMの設定</H4>
+４．１ テーマ・ファイルの修正<br />
+テーマ・ファイルに、Auto Discovery を設定する<br />
+使用している theme.html のtitleタグの下に下記の２行を追加する<br />
+<br />
+
+<TABLE class=SoftwareInstall>
+<TR>
+<TD>&lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot;
+      title=&quot;RSS&quot; href=&quot;&lt;{$xoops_url}&gt;/modules/whatsnew/rss.php&quot;
+      /&gt;<br />
+&lt;link rel=&quot;alternate&quot; type=&quot;application/atom+xml&quot; title=&quot;ATOM&quot; href=&quot;&lt;{$xoops_url}&gt;/modules/whatsnew/atom.php&quot; /&gt;<br />
+      <SPAN class=SoftwareComment></SPAN></TD>
+    </TR>
+</TABLE>
+<br />
+４．２ RSS/ATOMの確認 <br />
+いったん、ログアウトして、ゲストになる。<br />
+「ホームページ」画面の左欄にある「新着情報」メニューをクリックする。
+<br />
+「RSS/ATOMの正当性の検査」をクリックする。<br />
+<br />
+下記の項目が表示される<br />
+<br>
+(1) <IMG src="../../images/atom.png">「ATOM」アイコンをクリックする。<br />
+<A href="http://linux.ohwada.jp/modules/whatsnew/atom.php" target="_blank">「XML形式のATOM」</A>が表示されれば、OK。<br />
+<br />
+(2) 「ATOM URL の自動検出」 をクリックする<br />
+<A href="http://linux.ohwada.jp/modules/whatsnew/atom_auto.php" target="_blank">「ATOMの解析結果」</A> の解析結果が表示されれば、OK。<br />
+<br />
+(3) <IMG src="../../images/rss.png">「RSS」アイコンをクリックする。<br />
+<A href="http://linux.ohwada.jp/modules/whatsnew/rss.php" target="_blank">「XML形式のRSS」</a>が表示されれば、OK。<br />
+<br />
+(4) 「RSS URL の自動検出」 をクリックする<br />
+<A href="http://linux.ohwada.jp/modules/whatsnew/rss_auto.php" target="_blank">「RSSの解析結果」</A>が表示されれば、OK。<br />
+<br />
+(5) <IMG src="../../images/rdf.png">「RDF」アイコンをクリックする。<br />
+<A href="http://linux.ohwada.jp/modules/whatsnew/rdf.php" target="_blank">「XML形式のRDF」</a>が表示されれば、OK。<br />
+<br />
+
+(6) <IMG src="../../images/valid-rss.png">「RSS Valid」アイコンをクリックする。<br />
+「Congratulations!」が表示されれば、OK。<br />
+結果が表示されるまで、少し時間がかかります。<br />
+<br />
+(7) <IMG src="../../images/valid-atom.png">「ATOM Valid」アイコンをクリックする。<br />
+「Congratulations!」が表示されれば、OK。<br />
+結果が表示されるまで、少し時間がかかります。<br />
+<br />
+(8) <IMG src="../../images/pda_blue.png">「PDA」アイコンをクリックする。<br />
+PDA用の小さな「HTML画面」が表示されれば、OK。<br />
+
+<H4>５．Pingの設定</H4>
+５．１ ping&nbsp;サーバーの設定<br />
+管理者画面の左欄にある「whatsnew」アイコンをクリックする<br />
+「一般設定」画面になる。<br />
+「一般設定２」をクリックする。<br />
+<br />
+デフォルトで、６つの&nbsp;ping&nbsp;サーバーを用意しています。
+<br />全て使用すると、処理時間がかかるので、最初の３つくらいを残して保存する。<br />
+<br />
+５．２ Pingの確認<br />
+「ping の送信」をクリックする<br />
+「Ping送信」ボタンをクリックする<br />
+<br />
+下記のような表示が出れば、OK<br />
+
+<TABLE class=SoftwareResult>
+<TR>
+<TD>ping send - http：//ping.bloggers.jp/rpc/ - OK<br />
+      </TD>
+    </TR>
+  
+</TABLE>
+<br />
+ping サーバーは反応が遅いときがあります。<br>
+「<FONT color="#ff0000">HTTP connect error</FONT>」や「<FONT color="#ff0000">HTTP response timeout</FONT>」になることがあります。
+<br>
+１つくらいなら、気にしなくてもいいです。<br>
+
+<hr>
+<div align="right">$Id: install.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">index へ戻る</a>
+
+</BODY>
+</HTML>

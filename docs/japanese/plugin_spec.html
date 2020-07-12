@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>プラグインの仕様</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS 新着情報 モジュール</h3>
+<H3>プラグインの仕様</H3>
+<H4>基本方針</H4>
+XOOPSコアの検索（search）と同じような仕組みを採用しています。<br />
+<br />
+検索では、xoops_version.php にて、<br />
+下記のように検索するか否かとファイル名と関数名を指定します。<br />
+
+<TABLE class=SoftwareResult>
+<TR>
+<TD>$modversion['hasSearch'] = 1;<br />
+$modversion['search']['file'] = "include/search.inc.php";<br />
+$modversion['search']['func'] = "new_search";</TD>
+    </TR>
+</TABLE>
+<br />
+このモジュールでは、ファイル名と関数名は固定としています。<br />
+
+<H4>設置場所</H4>
+下記のいづれかにプラグインのファイルを設置します。<br />
+両方に設置された場合は、モジュール側が優先して使用されます。<br />
+<br />
+(1) モジュール<br />
+モジュールのディレクトリ/include/<br />
+<br />
+(2) WhatsNew<br />
+whatsnew/plugins/モジュールのディレクトリ名/<br />
+<br />
+１つのモジュールに対して複数のプラグインを設置することも出来ます。<br />
+プラグイン管理を参照のこと。<br />
+
+<HR>
+<H3>プラグイン本体</H3>
+
+<H4>ファイル名と関数名</H4>
+ファイル名は、&quot;<B><FONT color="#0000ff">dada.inc.php</FONT></B>&quot; です。<br />
+関数名は、「モジュールのディレクトリ名＋<FONT color="#0000ff"><B>_new</B></FONT>」です。<br />
+たとえば、news モジュールでは、&quot;news_new&quot; となります。<br />
+
+<H4>呼出し形式</H4>
+関数名（$limit, $offset）<br />
+$limit 新着記事の上限数<br />
+$offset 新着記事の時刻順のオフセット値<br />
+
+<H4>戻り値</H4>
+配列[一連番号]［項目］<br />
+
+<H4>項目の説明</H4>
+<TABLE border="1">
+    <TR>
+      <TD align="center">項目</TD>
+      <TD align="center">意味</TD>
+      <TD align="center">新着記事</TD>
+      <TD align="center">RSS/RDF</TD>
+      <TD align="center">ATOM</TD>
+    </TR>
+    <TR>
+      <TD>title</TD>
+      <TD>タイトル</TD>
+      <TD align="center">◎</TD>
+      <TD align="center">◎</TD>
+      <TD align="center">◎</TD>
+    </TR>
+    <TR>
+      <TD>link</TD>
+      <TD>URL</TD>
+      <TD align="center">◎</TD>
+      <TD align="center">◎</TD>
+      <TD align="center">◎</TD>
+    </TR>
+    <TR>
+      <TD>time</TD>
+      <TD>時刻</TD>
+      <TD align="center">◎</TD>
+      <TD align="center">◎</TD>
+      <TD align="center">◎</TD>
+    </TR>
+    <TR>
+      <TD>modified</TD>
+      <TD>更新時刻</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">◎（注１）</TD>
+    </TR>
+    <TR>
+      <TD>issued</TD>
+      <TD>発行時刻</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">◎（注１）</TD>
+    </TR>
+    <TR>
+      <TD>created</TD>
+      <TD>作成時刻</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−（注１）</TD>
+    </TR>
+    <TR>
+      <TD>description</TD>
+      <TD>内容&nbsp;（注２）</TD>
+      <TD align="center">○</TD>
+      <TD align="center">○</TD>
+      <TD align="center">○</TD>
+    </TR>
+    <TR>
+      <TD>cat_name</TD>
+      <TD>カテゴリ名</TD>
+      <TD align="center">○</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>cat_link</TD>
+      <TD>カテゴリのURL</TD>
+      <TD align="center">○</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+<TR>
+      <TD>uid</TD>
+      <TD>ユーザID</TD>
+      <TD align="center">○</TD>
+      <TD align="center">−</TD>
+      <TD align="center">◎（注３）</TD>
+    </TR>
+    
+    <TR>
+      <TD>hits</TD>
+      <TD>ヒット数</TD>
+      <TD align="center">○</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>replies</TD>
+      <TD>返信数</TD>
+      <TD align="center">○</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>image</TD>
+      <TD>画像のURL</TD>
+      <TD align="center">○（注４）</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>width</TD>
+      <TD>画像の横幅</TD>
+      <TD align="center">○（注４）</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>height</TD>
+      <TD>画像の高さ</TD>
+      <TD align="center">○（注４）</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>id</TD>
+      <TD>記事番号</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">◎（注５）</TD>
+    </TR>
+    <TR>
+      <TD>pda</TD>
+      <TD>PDA用のURL（注６）</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+</TABLE>
+◎：必須、○：任意、−：不要<br />
+<br />
+<h4>注１：</h4>
+時刻の項目は４つある。<br />
+全てUNIX時間とする。2038年問題はひとまず無視する。<br />
+<br />
+<FONT color="#800000">「time」</FONT> は必須である。<br />
+<FONT color="#800000">「modified」</FONT> と <FONT color="#800000">「issued」</FONT> はATOM用のオプションです。<br /><br />
+ATOMでは更新時刻（updated <S>modified</S> タグ）と発行時刻（published <S>issued</S> タグ）が必須である。<br />
+<br />
+ATOMでは更新時刻（updated <S>modified</S> タグ）と発行時刻（published <S>issued</S> タグ）が必須である。<br />
+設定されていないときは、「<FONT color="#800000">time</FONT>」 で代用する。<br />
+<s>ATOMでは作成時刻（createdタグ）が任意である。</s><br />
+ATOM 1.0 にてタグの名称が変更された<br />
+<h4>注２：</h4>
+「<FONT color="#800000">description</FONT>」 にはHTMLタグが使用できる。<br />
+レンダリング済みのHTML文あるいはテキスト文を設定する。<br />
+<br />
+新着記事では、
+<br />「要約の文字数」以下であれば、そのまま表示するか、HTMLタグを削除して表示する。<br />
+「要約の文字数」以上であれば、指定された文字数に丸めて、要約を表示する。<br />
+<br />
+RSSでは、HTMLタグを削除して、要約を表示する。<br />
+<br />
+ATOMでは、内容（contentタグ）には、そのまま表示する。<br />
+要約（summaryタグ）には、HTMLタグを削除して、要約を表示する。<br />
+<h4>注３：</h4>
+新着記事では、「<FONT color="#800000">uid</FONT>」より、ログイン名を取得して、表示する。<br />
+<br />
+ATOMでは作者名（nameタグ）が必須である。<br />
+ログイン名を作者名として使用する。<br />
+ATOMでは作者のURL（urlタグ）と作者の電子メール（emailタグ）が任意である。<br />
+本モジュールでは、個人情報保護の観点から、使用していない。<br />
+<br />
+執筆者名を明示しているモジュールのみ使用するのが望ましい。<br />
+<h4>注４：</h4>
+「<FONT color="#800000">image</FONT>」にはURLを設定する。<br />
+「画像のサイズ」以上であれば、縮小して表示する。<br />
+<br />「<FONT color="#800000">width</FONT>」と「<FONT color="#800000">height</FONT>」が設定されていない場合は、「画像のサイズ」で表示する。<br />
+<h4>注５：</h4>
+ATOMではユニークな記事番号（idタグ）が必須である。<br />
+XOOPS全体の記事番号を、モジュール番号と記事番号「<FONT color="#800000">id</FONT>」より生成する。<br />
+「<FONT color="#800000">id</FONT>」が設定されていないときは、一時的な番号で代用する。<br />
+<h4>注６：</h4>
+whatnew/pda.php として PDA 用にシンプルな形式の新着情報を表示している。<br />
+記事のURLに、「pda」があればそれを表示し、なければ「link」を表示する。<br />
+「pda」には、モジュールの print.php が代用されることが多い。<br />
+<br />
+<HR>
+<H3>プラグイン管理</H3>
+１つのモジュールに対して複数のプラグインを設置する場合は、<br />
+管理者がプラグインを選択するための情報を提示するファイルを設置すること。<br />
+
+<H4>ファイル名と関数名</H4>
+ファイル名は、&quot;<B><FONT color="#0000ff">version.php</FONT></B>&quot; です。<br />
+関数名は、「モジュールのディレクトリ名＋<FONT color="#0000ff"><B>_new_version</B></FONT>」です。<br />
+たとえば、newbb モジュールでは、&quot;newbb_new_version&quot; となります。<br />
+
+<H4>呼出し形式</H4>
+関数名（）<br />
+引数はなし<br />
+
+<H4>戻り値</H4>
+配列[一連番号]［項目］<br />
+
+<H4>項目の説明</H4>
+<TABLE border="1">
+    
+    <TR>
+      <TD align="center">項目</TD>
+      <TD align="center">意味</TD>
+    </TR>
+    <TR>
+      <TD>version</TD>
+      <TD>モジュールあるいはプラグインのバージョン</TD>
+    </TR>
+    <TR>
+      <TD>file</TD>
+      <TD>プラグインのファイル名（任意の名称）</TD>
+    </TR>
+    
+    <TR>
+      <TD>description</TD>
+      <TD>プラグインの説明</TD>
+    </TR>
+</TABLE>
+<br />
+
+<hr>
+<div align="right">$Id: plugin_spec.html,v 1.4 2006/06/29 02:47:02 ohwada Exp $</div>
+<a href="index.html">index へ戻る</a>
+
+</BODY>
+</HTML>

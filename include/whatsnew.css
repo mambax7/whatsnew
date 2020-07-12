@@ -1,0 +1,19 @@
+/* $Id: whatsnew.css,v 1.1 2007/11/26 03:22:14 ohwada Exp $ */
+
+table.whatsnew_measure_detail
+{
+	width: 200px;
+	margin:  0px;
+	padding: 0px;
+	font-size: 80%; 
+}
+
+table.whatsnew_measure_detail td
+{
+	border-top-width    : 0px; 
+	border-right-width  : 0px; 
+	border-bottom-width : 0px; 
+	border-left-width   : 0px;
+	vertical-align: top; 
+
+}

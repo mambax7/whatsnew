@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Ping sending</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS WhatsNew Module</h3>
+<H3>Ping sending</H3>
+
+<H4>Who send ping ?</H4>There are four methods. <br />
+(1)  An administrator send ping manually. <br />
+<br />
+(2)  When displaying a new report block, send ping. <br />
+In admin &quot;Preferences&quot; page,<br />
+mark &quot;Send Ping&quot; of &quot;What's New&quot; block. <br />
+Since ping server may have a slow reaction, <br />
+a display of the part and a block becomes slow. <br />
+<br />
+(3) When you access special URL, send ping. <br />
+It is  assumed that<br />
+this function is called periodically by wget or others. <br />
+It is necessary to be a server's administrator.&quot; <br />
+<br />
+Add The following line to crontab. <br />
+
+<TABLE class=SoftwareInstall>
+<TR>
+<TD>11 * * * * usr/bin/wget http : //xxx/modules/whatsnew/bin/update_ping.php?pass=<B>???</B> -q -O /dev/null<br />
+      </TD>
+    </TR>
+  
+</TABLE>
+<br />
+<B>???</B>&nbsp;is the password of update_ping.php,<br />
+which is set up in admin &quot;Preferences&quot; page.<br />
+<br />
+(4)  When submit or modify a airtcle, send ping. <br />
+This method should be given in the first time.<br />
+In order to perform this, <br />
+it is necessary to change all the programs of the corresponding modules. <br />
+<H4>Where send ping ?</H4>
+The following ping server is prepared by the default. <br />
+<TABLE class=SoftwareInstall>
+    <TR>
+      <TD>http://rpc.weblogs.com/<br />
+      http://xxx/modules/whatsnew/bin/server.php (debug use)<br />
+      </TD>
+    </TR>
+  </TABLE>
+<br />Since it is processing in order, <br />
+processing time is required by the number of ping servers. <br />
+I regard about at least three as enough. <br />
+<br />
+The last ping server is prepared for the debugging use. <br />
+Please delete, if a response occurs will be OK. <br />
+<br />
+
+<hr>
+<div align="right">$Id: ping.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">Back to index</a>
+
+</BODY>
+</HTML>

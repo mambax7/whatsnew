@@ -1,0 +1,122 @@
+<{* $Id: whatsnew_blk_bop.html,v 1.2 2007/12/02 02:48:04 ohwada Exp $ *}>
+
+<div align="left">
+<table class="outer" cellspacing="1">
+<tr class="odd">
+<th align="center" colspan="2"><b><{$lang_mod}></b></th>
+<th align="center"><b><{$lang_title}></b></th>
+<th align="center"><b><{$lang_user}></b></th>
+<th align="center"><b><{$lang_hits}></b></th>
+<th align="center"><b><{$lang_replies}></b></th>
+<th align="center"><b><{$lang_date}></b></th>
+</tr>
+<{foreach item=line from=$lines}>
+  <tr class="<{cycle values="even,odd"}>">
+  <td style="vertical-align:middle;">
+    <{if $line.mod_link && $line.mod_icon_link }>
+      <a href="<{$line.mod_link}>">
+      <img src="<{$line.mod_icon_link}>" alt="<{$line.mod_name}>" /></a>
+    <{elseif $line.mod_icon_link }>
+      <img src="<{$line.mod_icon_link}>" alt="<{$line.mod_name}>" />
+    <{else}>
+      -
+    <{/if}>
+  </td><td>
+    <{if $line.cat_name && $line.cat_link }>
+      <a href="<{$line.cat_link}>"><{$line.cat_name}></a>
+    <{elseif $line.cat_name }>
+      <{$line.cat_name}>
+    <{elseif $line.mod_name }>
+      <{$line.mod_name}>
+    <{else}>
+      -
+    <{/if}>
+  </td><td style="vertical-align:middle;">
+    <{if $line.link && $line.title }>
+      <a href="<{$line.link}>"><{$line.title}></a>
+    <{elseif $line.title }>
+      <{$line.title}>
+    <{else}>
+      -
+    <{/if}>
+    <{$line.extra}>
+  </td><td align="center" style="vertical-align:middle;">
+    <{if ($line.uid > 0) && $line.user }>
+      <a href="<{$xoops_url}>/userinfo.php?uid=<{$line.uid}>"><{$line.user_name}></a>
+    <{elseif $line.user }>
+      <{$line.user}>
+    <{else}>
+      -
+    <{/if}>
+  </td><td align="center" style="vertical-align:middle;">
+    <{if $line.hits != '' }>
+      <{$line.hits}>
+    <{else}>
+      -
+    <{/if}>
+  </td><td align="center" style="vertical-align:middle;">
+    <{if $line.replies != '' }>
+      <{$line.replies}>
+    <{else}>
+      -
+    <{/if}>
+  </td><td align="left" style="vertical-align:middle;">
+    <{if $line.date }>
+      <{$line.date}>
+    <{else}>
+      -
+    <{/if}>
+    <{if $line.show_today && $line.today_strings }>
+      <span style="<{$line.today_style}>"><{$line.today_strings}></span>
+    <{elseif $line.show_newday && $line.newday_strings }>
+      <span style="<{$line.newday_style}>"><{$line.newday_strings}></span>
+    <{/if}>
+  </td></tr>
+  <{if $line.banner_url || $line.summary || $line.image }>
+    <tr class="<{cycle values="even,odd"}>">
+    <td align="left" colspan="7">
+      <div>
+        <{if $line.link && $line.banner_url && $line.banner_width && $line.banner_height}>
+          <a href="<{$line.link}>">
+          <img src="<{$line.banner_url}>" width="<{$line.banner_width}>" height="<{$line.banner_height}>" border="0" alt="banner" />
+          </a>
+        <{elseif $line.link && $line.banner_url}>
+          <a href="<{$line.link}>">
+          <img src="<{$line.banner_url}>" border="0" alt="banner" /></a>
+        <{elseif $line.banner_url}>
+          <img src="<{$line.banner_url}>" border="0" alt="banner" />
+        <{/if}>
+      </div>
+      <{if $line.summary }>
+        <div style="font-size: 90%"><{$line.summary}></div>
+      <{/if}>
+      <{if $line.link && $line.image && $line.width && $line.height }>
+        <div>
+        <a href="<{$line.link}>">
+        <img src="<{$line.image}>" width="<{$line.width}>" height="<{$line.height}>" border="0" alt="image" />
+         </a>
+        </div>
+      <{elseif $line.link && $line.image }>
+        <div>
+        <a href="<{$line.link}>">
+        <img src="<{$line.image}>" border="0" alt="image" /></a>
+        </div>
+      <{elseif $line.image }>
+        <div>
+        <img src="<{$line.image}>" border="0" alt="image" />
+        </div>
+      <{/if}>
+    </td></tr>
+  <{/if}>
+<{/foreach}>
+</table>
+</div>
+<br />
+
+<div align="right">
+<a href="<{$xoops_url}>/modules/<{$dirname}>/"><{$lang_more}></a><br />
+</div>
+
+<div align="left">
+<{$icon_list}>
+</div>

@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>HTML Entity</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS WhatsNew Module</h3>
+<H4>HTML Entity</H4>
+HTML entity like as &amp;copy; or &amp;#169; has restricted use in W3C,<br />
+in order to be dependent on WEB browser. <br />
+( &amp;copy; and &amp;#169; are also expresses copyright sign &copy; )
+<br />
+<br />
+the following results having become, when checking at <A href="http://feedvalidator.org/" target="_blank">FEED Validator</A> of W3C.<br />
+<br />
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD colspan="2" align="center">RSS</TD>
+      <TD colspan="2" align="center">RDF</TD>
+      <TD colspan="2" align="center">ATOM</TD>
+    </TR>
+    <TR>
+      <TD>title</TD>
+      <TD>title</TD>
+      <TD>x</TD>
+      <TD>title</TD>
+      <TD>x</TD>
+      <TD>title</TD>
+      <TD>#</TD>
+    </TR>
+    <TR>
+      <TD>summary</TD>
+      <TD>description</TD>
+      <TD>o</TD>
+      <TD>description</TD>
+      <TD>o</TD>
+      <TD>summary</TD>
+      <TD>#</TD>
+    </TR>
+    <TR>
+      <TD>module name</TD>
+      <TD>category</TD>
+      <TD>o</TD>
+      <TD>dc:subject</TD>
+      <TD>o</TD>
+      <TD>dc:subject</TD>
+      <TD>o</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />
+o usable x unusable<br />
+# specify type=&quot;text/html&quot; <br />
+
+<H4>Form of HTML entity</H4>
+The result when setting four form as title tag<br />
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD colspan="4">result of FEED Validator</TD>
+      <TD rowspan="2" align="center" colspan="2">PHP parser&nbsp;(*)</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD align="center">RSS</TD>
+      <TD align="center">RDF</TD>
+      <TD align="center">ATOM</TD>
+      <TD align="center">W3C</TD>
+    </TR>
+    <TR>
+      <TD>&amp;#169:</TD>
+      <TD align="center">o</TD>
+      <TD align="center">o</TD>
+      <TD align="center">o</TD>
+      <TD>recomended</TD>
+      <TD align="center">x</TD>
+      <TD>Garbled characters</TD>
+    </TR>
+    <TR>
+      <TD>&amp;amp;#169:</TD>
+      <TD align="center" bgcolor="#ffffff">x</TD>
+      <TD align="center" bgcolor="#ffffff">x</TD>
+      <TD align="center" bgcolor="#ffffff">o</TD>
+      <TD bgcolor="#ffffff">&nbsp;</TD>
+      <TD align="center" bgcolor="#ffffff">o</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&amp;copy;</TD>
+      <TD align="center">x</TD>
+      <TD align="center">x</TD>
+      <TD align="center">x</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">x</TD>
+      <TD>parse error</TD>
+    </TR>
+    <TR>
+      <TD>&amp;amp;copy;</TD>
+      <TD align="center" bgcolor="#ffffff">x</TD>
+      <TD align="center" bgcolor="#ffffff">x</TD>
+      <TD align="center" bgcolor="#ffffff">o</TD>
+      <TD bgcolor="#ffffff">recomended</TD>
+      <TD align="center" bgcolor="#ffffff">o</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />
+* based on XML parser function of PHP<br />
+<br />In Microsoft IE browser and Firefox browser,<br />
+It seems that neither of the form becomes an error.<br />
+
+<H4>Implemention</H4>
+It implement as the following, <br />
+ in consideration of result of W3C and PHP parser.<br />
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD colspan="2" align="center">RSS</TD>
+      <TD colspan="2" align="center">RDF</TD>
+      <TD colspan="2" align="center">ATOM</TD>
+    </TR>
+    <TR>
+      <TD>title</TD>
+      <TD>title</TD>
+      <TD>x</TD>
+      <TD>title</TD>
+      <TD>x</TD>
+      <TD>title</TD>
+      <TD>o</TD>
+    </TR>
+    <TR>
+      <TD>summary</TD>
+      <TD>description</TD>
+      <TD>o</TD>
+      <TD>description</TD>
+      <TD>o</TD>
+      <TD>summary</TD>
+      <TD>o</TD>
+    </TR>
+    <TR>
+      <TD>module name</TD>
+      <TD>category</TD>
+      <TD>o</TD>
+      <TD>dc:subject</TD>
+      <TD>o</TD>
+      <TD>dc:subject</TD>
+      <TD>o</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />
+o means that HTML entity is changed to form like &amp;amp;#169 or &amp;amp;copy;
+. <br />
+x means that HTML entity is deleted. <br />
+<br />
+it was used as following, since the escape as specification, <br />
+&amp;amp; &amp;lt; &amp;gt; &amp;quot; &amp;apos;<br />
+
+<H4>Specification</H4>
+<A href="http://www.w3.org/TR/REC-xml/" target="_blank">Extensible Markup Language (XML) 1.0</A> <br />
+
+<hr>
+<div align="right">$Id: entity.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">Back to index</a>
+
+</BODY>
+</HTML>

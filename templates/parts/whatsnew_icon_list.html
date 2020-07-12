@@ -1,0 +1,28 @@
+<{* $Id: whatsnew_icon_list.html,v 1.2 2007/12/02 02:48:04 ohwada Exp $ *}>
+
+<table cellspacing="1">
+<{foreach name="icon_list" item=list from=$icon_list}>
+  <{if ($smarty.foreach.icon_list.iteration % $icon_max_col) == 1}>
+    <tr>
+  <{/if}>
+  <td>
+    <{if $list.mod_link && $list.icon_link}>
+      <a href="<{$list.mod_link}>">
+      <img src="<{$list.icon_link}>" alt="<{$list.mod_title}>" />
+      <{$list.mod_title}>
+      </a>
+    <{elseif $list.icon_link}>
+      <img src="<{$list.icon_link}>" alt="<{$list.mod_title}>" />
+      <{$list.mod_title}>
+    <{/if}>
+  </td>
+  <{assign var="icon_not_close" value="1"}>
+  <{if ($smarty.foreach.icon_list.iteration % $icon_max_col) == 0}>
+    </tr>
+    <{assign var="icon_not_close" value="0"}>
+  <{/if}>
+<{/foreach}>
+<{if $icon_not_close}>
+  </tr>
+<{/if}>
+</table>

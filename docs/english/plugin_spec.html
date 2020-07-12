@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Plugin Specification</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS WhatsNew Module</h3>
+<H3>Plugin Specification</H3>
+<H4>Principle</H4>
+I adopte the same structure as XOOPS search method.<br />
+<br />
+In XOOPS search, <br />
+a file name and a function name are specified in xoops_version.php, <br />
+like as follows.<br />
+<TABLE class=SoftwareResult>
+<TR>
+<TD>$modversion['hasSearch'] = 1;<br />
+$modversion['search']['file'] = "include/search.inc.php";<br />
+      $modversion['search']['func'] = &quot;news_search&quot;;</TD>
+    </TR>
+</TABLE>
+<br />In this module,<br />
+the file name and the function name are are fixed.<br />
+
+<H4>Placement</H4>
+The file of plugin is placed in the following.<br />
+A module's is used when there are in both. <br />
+<br />
+(1) Each modules<br />
+MODULE_DIRECTORY/include/<br />
+<br />
+(2) WhatsNew<br />
+whatsnew/plugins/MODULE_DIRECTORY_NAME/<br />
+<br />
+You can place twe or more plugins in one module.<br />
+Refer to the plugin management.<br />
+<br />
+
+<HR>
+<H3>Plugin main unit</H3>
+<H4>File name and funciton name</H4>
+A file name is &quot;<B><FONT color="#0000ff">dada.inc.php</FONT></B>&quot;.<br />
+A function name is directory name (module name) + &quot;<FONT color="#0000ff"><B>_new</B></FONT>&quot; like as &quot;news_new&quot;. <br />
+
+<H4>Calling form</H4>
+funtion_name ( $limit, $offset )<br />
+$limit : upper limit of articles<br />
+$offset : offset of article by time
+
+<H4>Return Value</H4>
+array[serinal_number][item]<br />
+
+<H4>Explanation of items</H4>
+<TABLE border="1">
+    <TR>
+      <TD align="center">Item</TD>
+      <TD align="center">Meaning</TD>
+      <TD align="center">WhatsNew Block</TD>
+      <TD align="center">RSS/RDF</TD>
+      <TD align="center">ATOM</TD>
+    </TR>
+    <TR>
+      <TD>title</TD>
+      <TD>title</TD>
+      <TD align="center">*</TD>
+      <TD align="center">*</TD>
+      <TD align="center">*</TD>
+    </TR>
+    <TR>
+      <TD>link</TD>
+      <TD>URL</TD>
+      <TD align="center">*</TD>
+      <TD align="center">*</TD>
+      <TD align="center">*</TD>
+    </TR>
+    <TR>
+      <TD>time</TD>
+      <TD>time</TD>
+      <TD align="center">*</TD>
+      <TD align="center">*</TD>
+      <TD align="center">*</TD>
+    </TR>
+    <TR>
+      <TD>modified</TD>
+      <TD>modified time</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">* (note 1)</TD>
+    </TR>
+    <TR>
+      <TD>issued</TD>
+      <TD>issued time</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">* (note 1)</TD>
+    </TR>
+    <TR>
+      <TD>created</TD>
+      <TD>created time</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">- (note 1)</TD>
+    </TR>
+    <TR>
+      <TD>description</TD>
+      <TD>description&nbsp;(note 2)</TD>
+      <TD align="center">o</TD>
+      <TD align="center">o</TD>
+      <TD align="center">o</TD>
+    </TR>
+    <TR>
+      <TD>cat_name</TD>
+      <TD>category name</TD>
+      <TD align="center">o</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>cat_link</TD>
+      <TD>category's URL</TD>
+      <TD align="center">o</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+<TR>
+      <TD>uid</TD>
+      <TD>user ID</TD>
+      <TD align="center">o</TD>
+      <TD align="center">-</TD>
+      <TD align="center">* (note 3)</TD>
+    </TR>
+    
+    <TR>
+      <TD>hits</TD>
+      <TD>number of hitsr</TD>
+      <TD align="center">o</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>replies</TD>
+      <TD>number of replies</TD>
+      <TD align="center">o</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>image</TD>
+      <TD>image URL</TD>
+      <TD align="center">o (note 4)</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>width</TD>
+      <TD>image width</TD>
+      <TD align="center">o (note 4)</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>height</TD>
+      <TD>image height</TD>
+      <TD align="center">o (note 4)</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>id</TD>
+      <TD>aricle number</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">* (note 5)</TD>
+    </TR>
+    <TR>
+      <TD>pda</TD>
+      <TD>URL for PDA (note 6)</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+</TABLE>
+* : indispensable o: option - : unnecesary<br />
+<h4>note 1:</h4>
+There are four items of time.
+<br />All item are unix time. Ignore 2003 yers problem.<br />
+<br />
+&quot;<font color="#800000"><b>time</b></FONT>&quot; is indispensable. <br />
+&quot;<font color="#800000"><b>modified</b></FONT>&quot; and &quot;<font color="#800000"><b>issued</b></FONT>&quot; are option for ATOM.
+<br />
+<br />
+ATOM require &quot;updated <S>modified</S> &quot;and &quot;published <S>issued</S> &quot; tag .<br />
+When they are not set up, this program substitute &quot;<font color="#800000"><b>time</b></FONT>&quot;.<br />
+<S>&quot;created&quot; is option in ATOM.</S> <br />
+tag name are chaged in ATOM spec 1.0.
+<h4>note 2:</h4>
+the plugin can use HTML tag in &quot;<font color="#800000"><b>description</b></FONT>&quot;. <br />
+the pluin set up a whole HTML sentence after rendering or a plane text.
+<br />
+<br />
+In What's New Block.<br />
+this program display as it is, or display after strip HTML tag, <br />
+when &quot;<font color="#800000"><b>description</b></FONT>&quot; is less than &quot;<FONT color="#000080">Max chars of summary</FONT>&quot; of config,<br />
+this program display summary after strip HTML tag and shorten it ,<br />
+when it is more than &quot;<FONT color="#000080">Max chars of summary</FONT>&quot; .<br />
+<br />
+In RSS, <br />
+a summary is displayed.<br />
+<br />
+In ATOM.<br />
+A whole sentence is displayed in content tag.<br />
+a summary is displayed in summary tag.<br />
+<h4>note 3:</h4>
+In What's New Block.,<br />
+this program get a login name from &quot;<font color="#800000"><b>uid</b></FONT>&quot;, <br />
+and display it as user. <br />
+<br />In ATOM, the author name in name tag is indispensable. <br />
+This program a login name as an author name. <br />
+<br />
+In ATOM, the author's URL in url tag and the author's email in email tag are option. <br />
+This program does not use them as a privacy policy. <br />
+<br />
+This option is desirable to use only the module which specifies the writer
+name.<br />
+<h4>note 4:</h4>
+the plugin setup the thumbnail image in &quot;<font color="#800000"><b>image</b></FONT>&quot;.<br />
+<br />
+this program will resize and display image, <br />
+if it is more than &quot;<FONT color="#000080">Width of site logo</FONT>&quot; and &quot;<FONT color="#000080">Height of site logo</FONT>&quot; of config.<br />
+this program will display as &quot;<FONT color="#000080">Width</FONT>&quot; and &quot;<FONT color="#000080">Height</FONT>&quot; of config,<br />
+if <font color="#800000"><B>&quot;width</B></FONT>&quot; and &quot;<font color="#800000"><B>height</B></FONT>&quot; are not set up.<br />
+<h4>note 5:</h4>
+In ATOM, the unique number in id tag is indispensable.<br />
+This program generate the unique number from a module number and &quot;<font color="#800000"><b>id</b></FONT>&quot;. <br />
+When &quot;<font color="#800000"><b>id</b></FONT>&quot; is not set up,<br />
+This program substitute a temporary number.<br />
+<h4>note 6:</h4>
+In whatnew/pda.php, there is &quot;what's new&quot; for PDA with simple style.<br />
+This module displays &quot;<font color="#800000"><b>pda</b></FONT>&quot; in the URL if there is &quot;<font color="#800000"><b>pda</b></FONT>&quot;, this displays &quot;<font color="#800000"><b>link</b></FONT>&quot; if not being.<br />
+print.php of the module is often substituted for &quot;<font color="#800000"><b>pda</b></FONT>&quot;.<br />
+<br />
+
+<HR>
+<H3>Plugin managemnet unit</H3>
+If you place twe or more plugins in one module,<br />
+you should place file which shows the information when the administrator can select plugins.<br />
+
+<H4>File name and funciton name</H4>
+A file name is &quot;<B><FONT color="#0000ff">version.php</FONT></B>&quot;.<br />
+A function name is directory name (module name) + &quot;<FONT color="#0000ff"><B>_new_version</B></FONT>&quot; like as &quot;newbb_new_version&quot;. <br />
+
+<H4>Calling form</H4>
+funtion_name ()<br />The argument is unnecessary.<br />
+
+<H4>Return Value</H4>
+array[serinal_number][item]<br />
+
+<H4>Explanation of items</H4>
+<TABLE border="1">
+    <TR>
+      <TD align="center">Item</TD>
+      <TD align="center">Meaning</TD>
+    </TR>
+    <TR>
+      <TD>version</TD>
+      <TD>version of module or plugin</TD>
+    </TR>
+    <TR>
+      <TD>file</TD>
+      <TD>file name of plugin</TD>
+    </TR>
+    <TR>
+      <TD>description</TD>
+      <TD>description of plugin</TD>
+    </TR>
+</TABLE>
+<br />
+
+<hr>
+<div align="right">$Id: plugin_spec.html,v 1.4 2006/06/29 02:47:02 ohwada Exp $</div>
+<a href="index.html">Back to index</a>
+
+</BODY>
+</HTML>

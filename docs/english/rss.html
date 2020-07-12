@@ -1,0 +1,335 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Biuld of RSS</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS WhatsNew Module</h3>
+<H3>Biuld of RSS</H3>
+<H4>Principle</H4>
+RSS is adopted the same format as backend.php of XOOPS core.<BR>
+<H4>Explanation of items</H4>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH colspan="2" align="center">Item</TH>
+      <TH align="center">Spec<BR>
+      Require</TH>
+      <TH align="center">change<BR>
+      or not</TH>
+      <TH align="center">system information</TH>
+      <TH align="center">exsample</TH>
+    </TR>
+    <TR>
+      <TD colspan="2"><B>channel</B></TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD>&nbsp;</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>title</TD>
+      <TD>Required</TD>
+      <TD align="center">o</TD>
+      <TD>site name&nbsp;(*1)</TD>
+      <TD>Happy Linux</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>link</TD>
+      <TD>Required</TD>
+      <TD align="center">o</TD>
+      <TD>site URL (*2)</TD>
+      <TD>http://linux2.ohwada.net/</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>description</TD>
+      <TD>Required</TD>
+      <TD align="center">o</TD>
+      <TD>site slogan</TD>
+      <TD>Linux Web Server ...</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>lastBuildDate</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD>(last build date of article)</TD>
+      <TD>Wed, 12 Oct 2005 22:50:42 +0900</TD>
+    </TR>
+<TR>
+      <TD>&nbsp;</TD>
+      <TD>pubDate</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD align="left">(pulished date of RSS)</TD>
+      <TD align="left">Wed, 12 Oct 2005 22:50:42 +0900</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>docs</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">fix</TD>
+      <TD>&nbsp;</TD>
+      <TD>http://backend.userland.com/rss/</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>generator</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">fix</TD>
+      <TD>&nbsp;</TD>
+      <TD>XOOPS WhatsNew 2.0</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>category</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">fix</TD>
+      <TD>&nbsp;</TD>
+      <TD>Whats New</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>managingEditor</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">o</TD>
+      <TD>Admin email (*3)</TD>
+      <TD>webmaster@ohwada.net</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>webMaster</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">o</TD>
+      <TD>Admin email (*3)</TD>
+      <TD>webmaster@ohwada.net</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>language</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD>lang code</TD>
+      <TD>en</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>copyright</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD align="left">Copyright (c) 2005, Kenichi Ohwada</TD>
+    </TR>
+    
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>cloud</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>ttl</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>rating</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>textInput</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>skipHours</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>skipDays</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD colspan="2"><B>image</B></TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD>&nbsp;</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>title</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">o</TD>
+      <TD>site name&nbsp;(*1)</TD>
+      <TD>Happy Linux</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>url</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">o</TD>
+      <TD>site logo URL</TD>
+      <TD>http://linux2.ohwada.net/images/logo.gif</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>link</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">o</TD>
+      <TD>site URL (*2)</TD>
+      <TD>http://linux2.ohwada.net/</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>width</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD>site logo width</TD>
+      <TD>144</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>height</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD>site logo hegiht</TD>
+      <TD>80</TD>
+    </TR>
+    <TR>
+      <TH colspan="2" align="center">item<TH align="center">Spec<BR>
+      Require</TH>
+      <TH align="center">change<BR>
+      or not</TH>
+      <TH align="center">atrcile data</TH>
+      <TH align="center">exsample</TH>
+    </TR>
+    <TR>
+      <TD colspan="2"><B>item</B></TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD>&nbsp;</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>title</TD>
+      <TD>Required</TD>
+      <TD align="center">auto</TD>
+      <TD>tilte</TD>
+      <TD>WhatsNew Module</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>link</TD>
+      <TD>Required</TD>
+      <TD align="center">auto</TD>
+      <TD>URL&nbsp;(*4)</TD>
+      <TD>http://linux2.ohwada.netp/modules/<BR>mydownloads/singlefile.php?lid=xxx</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>description</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD>content</TD>
+      <TD>Function 1. WhatsNew Block</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>pubDate</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD>published date</TD>
+      <TD>Thu, 13 Oct 2005 22:46:42 +0900</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>guid</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD>URL&nbsp;(*4)</TD>
+      <TD>http://linux2.ohwada.jp/modules/...</TD>
+    </TR>
+    
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>category</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">auto</TD>
+      <TD align="left">module name</TD>
+      <TD align="left">Downloads&nbsp;</TD>
+    </TR>
+<TR>
+      <TD>&nbsp;</TD>
+      <TD>author</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>comments</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>enclosure</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>source</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+      <TD align="center">-</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />
+o means the item which can be changed from WhatsNew admin configration.<BR>
+However, * is the same setting item. <br />
+<H4>Specification</H4>
+<A href="http://blogs.law.harvard.edu/tech/rss" target="_blank">RSS 2.0 
+Specification</A> <br />
+
+<hr>
+<div align="right">$Id: rss.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">Back to index</a>
+
+</BODY>
+</HTML>

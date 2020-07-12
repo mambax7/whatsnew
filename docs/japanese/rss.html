@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>RSSの生成</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS 新着情報 モジュール</h3>
+<H3>RSSの生成</H3>
+<H4>基本方針</H4>
+XOOPSコアの backend.php と同じような形式とした。<br />
+<H4>項目の詳細</H4>
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TH colspan="2" align="center">項目</TH>
+      <TH align="center">仕様</TH>
+      <TH align="center">変更の可否</TH>
+      <TH align="center">システム情報</TH>
+      <TH align="center">表示例</TH>
+    </TR>
+    <TR>
+      <TD colspan="2"><B>channel</B></TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD>&nbsp;</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>title</TD>
+      <TD>必須</TD>
+      <TD align="center">◎</TD>
+      <TD>サイト名&nbsp;(※１)</TD>
+      <TD>はっぴぃ・りなっくす</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>link</TD>
+      <TD>必須</TD>
+      <TD align="center">◎</TD>
+      <TD>サイトURL&nbsp;(※２)</TD>
+      <TD>http://linux.ohwada.jp/</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>description</TD>
+      <TD>必須</TD>
+      <TD align="center">◎</TD>
+      <TD>サイト副題</TD>
+      <TD>Linux Web Server ...</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>lastBuildDate</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD>（記事の最終更新日）</TD>
+      <TD>Wed, 12 Oct 2005 22:50:42 +0900</TD>
+    </TR>
+<TR>
+      <TD>&nbsp;</TD>
+      <TD>pubDate</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD align="left">（RSSの発行日）</TD>
+      <TD align="left">Wed, 12 Oct 2005 22:50:42 +0900</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>docs</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">固定</TD>
+      <TD>&nbsp;</TD>
+      <TD>http://backend.userland.com/rss/</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>generator</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">固定</TD>
+      <TD>&nbsp;</TD>
+      <TD>XOOPS WhatsNew 2.0</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>category</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">固定</TD>
+      <TD>&nbsp;</TD>
+      <TD>Whats New</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>managingEditor</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">◎</TD>
+      <TD>管理者メールアドレス&nbsp;(※３)</TD>
+      <TD>webmaster@ohwada.jp</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>webMaster</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">◎</TD>
+      <TD>管理者メールアドレス&nbsp;(※３)</TD>
+      <TD>webmaster@ohwada.jp</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>language</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD>文字コード</TD>
+      <TD>ja</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>copyright</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD align="left"><SPAN class=tx>Copyright (c) 2005, Kenichi Ohwada</SPAN></TD>
+    </TR>
+    
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>cloud</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>ttl</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>rating</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>textInput</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>skipHours</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>skipDays</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD colspan="2"><B>image</B></TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD>&nbsp;</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>title</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">◎</TD>
+      <TD>サイト名&nbsp;(※２)</TD>
+      <TD>はっぴぃ・りなっくす</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>url</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">◎</TD>
+      <TD>サイト画像URL</TD>
+      <TD>http://linux.ohwada.jp/images/logo.gif</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>link</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">◎</TD>
+      <TD>サイトURL</TD>
+      <TD>http://linux.ohwada.jp/</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>width</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD>サイト画像の横サイズ</TD>
+      <TD>144</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>height</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD>サイト画像の縦サイズ</TD>
+      <TD>80</TD>
+    </TR>
+    <TR>
+      <TH colspan="2" align="center">項目<TH align="center">仕様</TH>
+      <TH align="center">変更の可否</TH>
+      <TH align="center">記事情報</TH>
+      <TH align="center">表示例</TH>
+    </TR>
+    <TR>
+      <TD colspan="2"><B>item</B></TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">&nbsp;</TD>
+      <TD>&nbsp;</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>title</TD>
+      <TD>必須</TD>
+      <TD align="center">自動生成</TD>
+      <TD>記事の題目</TD>
+      <TD>新着情報モジュール</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>link</TD>
+      <TD>必須</TD>
+      <TD align="center">自動生成</TD>
+      <TD>記事のURL&nbsp;(※４)</TD>
+      <TD>http://linux.ohwada.jp/modules/<BR>mydownloads/singlefile.php?lid=xxx</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>description</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD>記事の内容</TD>
+      <TD>機能概要 １．新着記事一覧ブロック。</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>pubDate</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD>記事の発行効日</TD>
+      <TD>Thu, 13 Oct 2005 22:46:42 +0900</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>guid</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD>記事のURL&nbsp;(※４)</TD>
+      <TD>http://linux.ohwada.jp/modules/...</TD>
+    </TR>
+    
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>category</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">自動生成</TD>
+      <TD align="left">記事のモジュール名</TD>
+      <TD align="left">ダウンロード&nbsp;</TD>
+    </TR>
+<TR>
+      <TD>&nbsp;</TD>
+      <TD>author</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>comments</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>enclosure</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD>source</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+      <TD align="center">−</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />
+◎ は、本モジュールの管理画面から変更可能な項目。<br />
+ただし、※は同じ設定項目。<br />
+<br />
+<H4>仕様</H4>
+<A href="http://blogs.law.harvard.edu/tech/rss" target="_blank">RSS 2.0 
+Specification</A> <br />
+
+<hr>
+<div align="right">$Id: rss.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">index へ戻る</a>
+
+</BODY>
+</HTML>

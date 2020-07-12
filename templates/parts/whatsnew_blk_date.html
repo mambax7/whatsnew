@@ -1,0 +1,65 @@
+<{* $Id: whatsnew_blk_date.html,v 1.2 2007/12/02 02:48:04 ohwada Exp $ *}>
+
+<div align="left">
+<{foreach item=line from=$lines}>
+  <div>
+    <{if $line.mod_link && $line.mod_icon_link }>
+      <a href="<{$line.mod_link}>">
+      <img src="<{$line.mod_icon_link}>" alt="<{$line.mod_name}>" /></a>
+    <{elseif $line.mod_icon_link }>
+      <img src="<{$line.mod_icon_link}>" alt="<{$line.mod_name}>" />
+    <{/if}>
+    <{if $line.link && $line.banner_url && $line.banner_width && $line.banner_height }>
+      <a href="<{$line.link}>">
+      <img src="<{$line.banner_url}>" width="<{$line.banner_width}>" height="<{$line.banner_height}>" border="0" alt="banner" />
+      </a>
+    <{elseif $line.link && $line.banner_url }>
+      <a href="<{$line.link}>">
+      <img src="<{$line.banner_url}>" border="0" alt="banner" /></a>
+    <{elseif $line.banner_url }>
+      <img src="<{$line.banner_url}>" border="0" alt="banner" />
+    <{/if}>
+    <{if $line.link && $line.title }>
+      <a href="<{$line.link}>"><{$line.title}></a>
+    <{else $line.title }>
+      <{$line.title}>
+    <{/if}>
+    <{if $line.date }>
+      (<{$line.date}>)
+    <{/if}>
+    <{if $line.show_today && $line.today_strings }>
+      <span style="<{$line.today_style}>"><{$line.today_strings}></span>
+    <{elseif $line.show_newday && $line.newday_strings }>
+      <span style="<{$line.newday_style}>"><{$line.newday_strings}></span>
+    <{/if}>
+  </div>
+  <{if $line.summary }>
+    <div style="font-size: 80%"><{$line.summary}></div>
+  <{/if}>
+  <{if $line.link && $line.image && $line.width && $line.height }>
+    <div>
+    <a href="<{$line.link}>">
+      <img src="<{$line.image}>" width="<{$line.width}>" height="<{$line.height}>" border="0" alt="image" />
+    </a>
+    </div>
+  <{elseif $line.link && $line.image }>
+    <div>
+    <a href="<{$line.link}>">
+    <img src="<{$line.image}>" border="0" alt="image" /></a>
+    </div>
+  <{elseif $line.image }>
+    <div>
+    <img src="<{$line.image}>" border="0" alt="image" />
+    </div>
+  <{/if}>
+<{/foreach}>
+<br />
+</div>
+
+<div align="right">
+<a href="<{$xoops_url}>/modules/<{$dirname}>/"><{$lang_more}></a><br />
+</div>
+
+<div align="left">
+<{$icon_list}>
+</div>

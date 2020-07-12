@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Install Manual</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS What'sNew Module</h3>
+<H3>Install Manual</H3>
+
+<H4>1. Unzip and copy</H4>
+If unzip download file,<br />
+the <FONT color="#0000ff"><B>whatsnew</B></FONT> directory be made. <br />
+and copy it under XOOPS modules directory. <br />
+<H4>2. Installation of Whatsnew Module</H4>
+Install from &quot;module management&quot; of the XOOPS admin page.
+<H4>3. Setup of Whatsnew Module</H4>
+3.1 Iniitialize Module<br />
+<img src="../../images/whatsnew_slogo.png" width=70> <br />
+Click th icon of &quot;whatsnew&quot; in left. <br />
+&quot;Configration 1&quot; page is displayed. <br />
+<br />
+3.2 Warninig<br />
+In frist, display some warnings<br />
+<br />
+(1) <FONT color="#ff0000">Not initialize Config table<br />
+</FONT>Click &quot;SAVE&quot; to iniialize<br />
+<br />
+(2) <FONT color="#ff0000">Not writable for cache derectory<br />
+</FONT>Permit to write in whatsnew/<FONT color="#0000ff"><B>cache</B></FONT> directory<br />
+<br />
+(3) <FONT color="#ff0000">There are plugins in both module's and WhatsNew's<br />
+</FONT>The modules' pluging is used in priority.<br />
+Please delete the older one.<br />
+<br />
+3.3 select module<br />
+Please select module to display.<br />
+<br />
+3.4 access permission of module and block<br />In XOOPS &quot;block management&quot; page, set &quot;show&quot; <br />
+In XOOPS &quot;group management&quot; page, set &quot;module access&quot; and &quot;block access&quot;. <br />
+<br />
+3.5. Check of setting<br />
+It will be OK, if show whtsnew main page. <br />
+<H4>4. Setup of RSS/ATOM</H4>
+4.1. Change of a theme file <br />
+Set RSS/ATOM Auto Discovery in theme file. <br />
+Add the two following lines under &quot;TITLE&quot; tag in theme.html .<br />
+<br />
+
+<TABLE class=SoftwareInstall>
+<TR>
+<TD>&lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot;
+      title=&quot;RSS&quot; href=&quot;&lt;{$xoops_url}&gt;/modules/whatsnew/rss.php&quot;
+      /&gt;<br />
+&lt;link rel=&quot;alternate&quot; type=&quot;application/atom+xml&quot; title=&quot;ATOM&quot; href=&quot;&lt;{$xoops_url}&gt;/modules/whatsnew/atom.php&quot; /&gt;<br />
+      <SPAN class=SoftwareComment></SPAN></TD>
+    </TR>
+</TABLE>
+<br />
+4.1. Check of RSS/ATOM
+Please logout and read by anonymous mode<br />
+Click &quot;What's New&quot; menu in left.
+<br />
+Click &quot;RSS/ATOM Valid check&quot;<br />
+<br />
+Some web links are displayed. <br />
+<br />
+(1) <IMG src="../../images/atom.png">
+Click ATOM icon<br />
+It will be OK, if <A href="http://linux2.ohwada.net/modules/whatsnew/atom.php" target="_blank">a ATOM of XML form</A> is displayed.<br />
+<br />
+(2) Click &quot;ATOM Automatic Discovery&quot; <br />
+It will be OK, if <A href="http://linux2.ohwada.net/modules/whatsnew/atom_auto.php" target="_blank">a parse result of ATOM</A> is displayed. <br />
+<br />
+(3) <IMG src="../../images/rss.png">
+Click RSS icon<br />
+It will be OK, if <A href="http://linux2.ohwada.net/modules/whatsnew/rss.php" target="_blank">a RSS of XML form</A> is displayed. <br />
+<br />
+(4) Click &quot;RSS Automatic Discovery&quot;. <br />
+It will be OK, if <A href="http://linux2.ohwada.net/modules/whatsnew/rss_auto.php" target="_blank">a parse result of RSS</A> is displayed. <br />
+<br />
+(5) <IMG src="../../images/rdf.png"><br />
+Click RDF icon
+<br />
+It will be OK, if <A href="http://linux2.ohwada.net/modules/whatsnew/rdf.php" target="_blank">a RDF of XML form</A> is displayed. <br />
+<br />
+(6) <IMG src="../../images/pda_blue.png"><br />
+Click PAD icon<br />
+It will be OK, if small HTML for PDA is displayed.<br />
+<br />
+(6) <IMG src="../../images/valid-atom.png"><br />Click &quot;ATOM Valid&quot; icon. <br />
+It will be OK, if &quot;Congratulations&quot; is displayed. <br />
+It takes time for a while until a result is displayed.<br />
+<br />
+(8) <IMG src="../../images/valid-rss.png"><br />
+Click &quot;RSS Valid&quot; icon. <br />
+It will be OK, if &quot;Congratulations&quot; is displayed. <br />
+It takes time for a while until a result is displayed. <br />
+<H4>5. Setup of Ping</H4>
+5.1 setup of ping&nbsp; server
+<br />Click &quot;whatsnew&quot; icon in lef of the XOOPS admin page. <br />
+&quot;Cinfigration 1&quot; page is displayed <br />
+Click &quot;Cinfigration 2&quot;<br />
+<br />
+There are some servers in default.<BR>
+Click SAVE button.<br />
+<br />
+5.2 Check of Ping<br />
+Click &quot;Ping Send&quot;. <br />
+Click &quot;Ping Send&quot; button,<br />
+<br />
+It will OK, if the following displays come out. <br />
+<TABLE class=SoftwareResult>
+<TR>
+<TD>ping send - http¡§//ping.bloggers.jp/rpc/ - OK<br />
+      </TD>
+    </TR>
+  
+</TABLE>
+<br />Ping server may have a slow reaction. <br />
+When &quot;<FONT color="#ff0000">HTTP connect error</FONT>&quot; or &quot;<FONT color="#ff0000">HTTP response timeout</FONT>&quot; is displayed,<br />
+you may not care if few error messages. <br />
+<br />
+
+<hr>
+<div align="right">$Id: install.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">Back to index</a>
+
+</BODY>
+</HTML>

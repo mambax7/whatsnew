@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>HTMLエンティティの扱い</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS 新着情報 モジュール</h3>
+<H4>HTMLエンティティの扱い</H4>
+&amp;copy; や &amp;#169; などのHTMLエンティティは、WEBブラウザに依存するため、W3Cでは使用を制限している。<br />
+( &amp;copy; も &amp;#169; もコピーライト記号 &copy; を表す。）<br />
+<br />
+W3Cの <A href="http://feedvalidator.org/" target="_blank">FEED Validator</A> でチェックすると、下記のような結果になった。<br />
+<br />
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD colspan="2" align="center">RSS</TD>
+      <TD colspan="2" align="center">RDF</TD>
+      <TD colspan="2" align="center">ATOM</TD>
+    </TR>
+    <TR>
+      <TD>タイトル</TD>
+      <TD>title</TD>
+      <TD>×</TD>
+      <TD>title</TD>
+      <TD>×</TD>
+      <TD>title</TD>
+      <TD>△</TD>
+    </TR>
+    <TR>
+      <TD>要約</TD>
+      <TD>description</TD>
+      <TD>○</TD>
+      <TD>description</TD>
+      <TD>○</TD>
+      <TD>summary</TD>
+      <TD>△</TD>
+    </TR>
+    <TR>
+      <TD>モジュール名</TD>
+      <TD>category</TD>
+      <TD>○</TD>
+      <TD><SPAN class=t>dc:subject</SPAN></TD>
+      <TD>○</TD>
+      <TD><SPAN class=t>dc:subject</SPAN></TD>
+      <TD>○</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />
+○ 使用可 × 使用不可<br />
+△ type=&quot;text/html&quot; を指定する<br />
+
+<H4>HTMLエンティティの形式</H4>
+titleタグに４つの形式を設定したときの結果<br />
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD colspan="4">FEED Validator の判定結果</TD>
+      <TD rowspan="2" align="center" colspan="2">PHPの解釈<BR>
+      （※）</TD>
+    </TR>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD align="center">RSS</TD>
+      <TD align="center">RDF</TD>
+      <TD align="center">ATOM</TD>
+      <TD align="center">W3C</TD>
+    </TR>
+    <TR>
+      <TD>&amp;#169:</TD>
+      <TD align="center">○</TD>
+      <TD align="center">○</TD>
+      <TD align="center">○</TD>
+      <TD>推奨</TD>
+      <TD align="center">×</TD>
+      <TD>文字化けする</TD>
+    </TR>
+    <TR>
+      <TD>&amp;amp;#169:</TD>
+      <TD align="center" bgcolor="#ffffff">×</TD>
+      <TD align="center" bgcolor="#ffffff">×</TD>
+      <TD align="center" bgcolor="#ffffff">○</TD>
+      <TD bgcolor="#ffffff">&nbsp;</TD>
+      <TD align="center" bgcolor="#ffffff">○</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+    <TR>
+      <TD>&amp;copy;</TD>
+      <TD align="center">×</TD>
+      <TD align="center">×</TD>
+      <TD align="center">×</TD>
+      <TD>&nbsp;</TD>
+      <TD align="center">×</TD>
+      <TD>パース・エラーになる</TD>
+    </TR>
+    <TR>
+      <TD>&amp;amp;copy;</TD>
+      <TD align="center" bgcolor="#ffffff">×</TD>
+      <TD align="center" bgcolor="#ffffff">×</TD>
+      <TD align="center" bgcolor="#ffffff">○</TD>
+      <TD bgcolor="#ffffff">推奨</TD>
+      <TD align="center" bgcolor="#ffffff">○</TD>
+      <TD>&nbsp;</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />※ PHPのXML パーサ関数による。<br />
+<br />
+マイクロソフト社のIEブラウザや、Firefoxブラウザでは、いずれの形式もエラーにはならないようです。
+<br />
+
+<H4>実装</H4>
+W3Cの規定とPHPパーサーの動作を考慮して、下記とした。<br />
+<TABLE border="1">
+  <TBODY>
+    <TR>
+      <TD>&nbsp;</TD>
+      <TD colspan="2" align="center">RSS</TD>
+      <TD colspan="2" align="center">RDF</TD>
+      <TD colspan="2" align="center">ATOM</TD>
+    </TR>
+    <TR>
+      <TD>タイトル</TD>
+      <TD>title</TD>
+      <TD>×</TD>
+      <TD>title</TD>
+      <TD>×</TD>
+      <TD>title</TD>
+      <TD>○</TD>
+    </TR>
+    <TR>
+      <TD>要約</TD>
+      <TD>description</TD>
+      <TD>○</TD>
+      <TD>description</TD>
+      <TD>○</TD>
+      <TD>summary</TD>
+      <TD>○</TD>
+    </TR>
+    <TR>
+      <TD>モジュール名</TD>
+      <TD>category</TD>
+      <TD>○</TD>
+      <TD><SPAN class=t>dc:subject</SPAN></TD>
+      <TD>○</TD>
+      <TD><SPAN class=t>dc:subject</SPAN></TD>
+      <TD>○</TD>
+    </TR>
+  </TBODY>
+</TABLE>
+<br />
+○ は、&amp;amp;#169: &amp;amp;copy; の形式に変換した。<br />
+× は、HTMLエンティティを削除した。<br />
+<br />
+なお、下記のものは規定とおりのエスケープなので、そのまま使用した。<br />
+&amp;amp;　&amp;lt;　&amp;gt;　&amp;quot;　&amp;apos;<br />
+
+<H4>仕様</H4>
+<A href="http://www.w3.org/TR/REC-xml/" target="_blank">Extensible Markup Language (XML) 1.0</A> <br />
+
+<hr>
+<div align="right">$Id: entity.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">index へ戻る</a>
+
+</BODY>
+</HTML>

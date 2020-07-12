@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=EUC-JP">
+<META http-equiv="Content-Style-Type" content="text/css">
+<TITLE>Ping の送信</TITLE>
+</HEAD>
+<BODY>
+
+<h3 class="SoftwareHead">XOOPS 新着情報 モジュール</h3>
+<H3>Ping の送信</H3>
+
+<H4>誰が&nbsp;ping&nbsp;を送信するか</H4>
+４つの方法があります。<br />
+<br />(1) 管理者が手動で送信する<br />
+<br />
+(2) 
+新規記事ブロックを表示するときに送信する<br />
+管理者の「一般設定」画面にて、新着記事ブロックの「Pingを送信する」をチェックする。<br />
+<br />
+ping サーバーは反応が遅いときがあります。<br />その分、ブロックの表示が遅くなります。<br />
+<br />
+(3) 特定のURLのアクセスすると送信する
+<br />wget などで周期的に呼び出してことを想定しています<br />
+「サーバーの管理者」である必要があります。<br />
+<br />
+crontab に下記のような設定を加えます。<br />
+
+<TABLE class=SoftwareInstall>
+<TR>
+<TD>11 * * * * usr/bin/wget http：//xxx/modules/whatsnew/bin/update_ping.php?pass=<B>???</B> -q -O /dev/null<br />
+      </TD>
+    </TR>
+  
+</TABLE>
+<br>
+<B>???</B>&nbsp;は、管理者の「一般設定」画面にて設定した「update_ping.php のパスワード」です。<br>
+<br />
+(4) 記事を新設・変更したときに送信する<br />
+本来であれば、この方法が一番最初になるはずですが。<br />
+これを行うためには、該当するモジュールの該当するプログラムを全て修正する必要があります。<br />
+<br>
+
+<H4>どこに&nbsp;ping&nbsp;を送信するか</H4>
+デフォルトで、下記の&nbsp;ping&nbsp;サーバーを用意しています。<br />
+
+<TABLE class=SoftwareInstall>
+    <TR>
+      <TD>http：//ping.bloggers.jp/rpc/<br />
+      http：//ping.cocolog-nifty.com/xmlrpc<br />
+      http：//bulkfeeds.net/rpc<br />
+      http：//ping.myblog.jp/<br />
+      http：//blog.goo.ne.jp/XMLRPC<br />
+      http：//xxx/modules/whatsnew/bin/server.php （デバック用途）<br />
+      </TD>
+    </TR>
+  </TABLE>
+<br />
+順番に処理しているので、pingサーバーの数だけ、処理時間がかかります。<br />
+最初の３つくらいで、充分だと思います。<br />
+<br />
+最後のものは、デバック用途で用意しています。<br />
+レスポンスがOKであれば、削除してください。<br />
+<br />
+
+<hr>
+<div align="right">$Id: ping.html,v 1.3 2005/10/22 08:25:19 ohwada Exp $</div>
+<a href="index.html">index へ戻る</a>
+
+</BODY>
+</HTML>
